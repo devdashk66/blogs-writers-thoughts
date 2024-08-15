@@ -2,32 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* For webkit-based browsers (Chrome, Safari) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* The background color of the scrollbar track */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #eb175c; /* Indigo-600 color */
+  border-radius: 60px;
+  border: 2px solid transparent; /* To add some padding between the scrollbar and the edge */
+}
+
+/* For Firefox */
+.custom-scrollbar {
+  scrollbar-color: #eb175c transparent; /* Thumb color, Track color */
+  border-radius: 60px;
+  scrollbar-width: thin; /* Width of the scrollbar */
 }
