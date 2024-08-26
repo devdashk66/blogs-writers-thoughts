@@ -22,7 +22,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={montserrat.className + " bg-gray-100 dark:bg-[#181818] "}
+        className={
+          montserrat.className +
+          " bg-gray-100 dark:bg-[#181818] overflow-x-hidden"
+        }
       >
         {/* SplashScreen is used to display a loading screen until the main content is ready. */}
         <SplashScreen>

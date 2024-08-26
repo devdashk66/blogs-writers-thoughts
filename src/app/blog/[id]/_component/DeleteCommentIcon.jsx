@@ -6,7 +6,7 @@ import { useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { toast } from "react-toastify";
 
-const DeleteComment = ({ id }) => {
+const DeleteCommentIcon = ({ id }) => {
   const router = useRouter(); // Initialize the router to programmatically navigate or refresh the page
   const [showModal, setShowModal] = useState(false); // State to manage the visibility of the confirmation modal
 
@@ -69,4 +69,4 @@ const DeleteComment = ({ id }) => {
   );
 };
 
-export default DeleteComment;
+export default DeleteCommentIcon;

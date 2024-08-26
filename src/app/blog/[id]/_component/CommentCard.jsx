@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import { getUserByEmail } from "@/database/queries";
 import { formatDate } from "@/utils/formatDate";
 import Link from "next/link";
+import DeleteCommentIcon from "./DeleteCommentIcon";
 
 const CommentCard = async ({ comment, blogAuthorId }) => {
   const session = await auth(); // Retrieve the current session to check if a user is authenticated
@@ -30,7 +31,9 @@ const CommentCard = async ({ comment, blogAuthorId }) => {
       {/* Display the comment text */}
       <p className="text-gray-800 dark:text-gray-200">{comment?.comment}</p>
       {/* Display the delete button only if the logged-in user is the comment owner */}
-      {/* {(isCommentOwner || isBlogOwner) && <DeleteComment id={comment?.id} />} */}
+      {(isCommentOwner || isBlogOwner) && (
+        <DeleteCommentIcon id={comment?.id} />
+      )}
     </div>
   );
 };
