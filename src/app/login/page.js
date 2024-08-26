@@ -1,7 +1,14 @@
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 import LoginForm from "./_component/LoginForm";
 import SocialLogin from "./_component/SocialLogin";
 
-const LoginPage = () => {
+const LoginPage = async () => {
+  const session = await auth();
+
+  if (session?.user) {
+    redirect("/profile");
+  }
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-[#181818] text-gray-900 flex justify-center">
       <div className="max-w-screen-xl m-0 sm:m-10 bg-white dark:bg-dark shadow sm:rounded-lg flex justify-center flex-row-reverse flex-1">

@@ -9,6 +9,7 @@ async function connectToDB() {
     );
   }
   if (cached.connection) {
+    console.log("cached connect");
     return cached.connection;
   }
   if (!cached.promise) {
@@ -24,6 +25,7 @@ async function connectToDB() {
     cached.promise = undefined;
     throw e;
   }
+  console.log("new connection");
   return cached.connection;
 }
 export default connectToDB;

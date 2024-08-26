@@ -1,21 +1,53 @@
 "use client";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const LoginForm = () => {
-  const [error, setError] = useState("Invalide email or password");
+  const [error, setError] = useState("");
+  const router = useRouter();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (result.error) {
+        setError("Invalid email or password");
+      } else {
+        router.push("/profile");
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={handleLogin}>
       <div className="mx-auto max-w-xs">
         <input
           className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
           type="email"
+          name="email"
           placeholder="Email"
+          required
         />
         <input
           className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
           type="password"
+          name="password"
           placeholder="Password"
+          required
         />
         {error && (
           <span className="text-xs italic text-red-500 mt-3 block">
@@ -23,7 +55,10 @@ const LoginForm = () => {
           </span>
         )}
 
-        <button className="mt-5 tracking-wide font-semibold bg-primary text-gray-100 w-full py-4 rounded-lg hover:bg-opacity-80 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+        <button
+          type="submit"
+          className="mt-5 tracking-wide font-semibold bg-primary text-gray-100 w-full py-4 rounded-lg hover:bg-opacity-80 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+        >
           <svg
             className="w-6 h-6 -ml-2"
             fill="none"

@@ -2,33 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-.scrollbar-hide {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
+@layer components {
+  .custom-checkbox:checked {
+    @apply bg-primary ring-primary;
+  }
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+/* Scrollbar overall */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
 }
 
-/* For webkit-based browsers (Chrome, Safari) */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 12px;
+/* Scrollbar track */
+::-webkit-scrollbar-track {
+  background-color: #181818; /* Background color of the track */
+  border-radius: 100px; /* Round corners of the track */
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent; /* The background color of the scrollbar track */
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #eb175c; /* Indigo-600 color */
-  border-radius: 60px;
-  border: 2px solid transparent; /* To add some padding between the scrollbar and the edge */
+/* Scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #eb175c; /* Color of the scrollbar thumb */
+  border-radius: 100px; /* Round corners of the thumb */
 }
 
 /* For Firefox */
-.custom-scrollbar {
-  scrollbar-color: #eb175c transparent; /* Thumb color, Track color */
-  border-radius: 60px;
-  scrollbar-width: thin; /* Width of the scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #eb175c #181818;
 }
