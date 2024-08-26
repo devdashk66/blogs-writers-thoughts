@@ -40,6 +40,8 @@ const ImageUpload = ({ imagePreview, onUploadComplete }) => {
                 src={imagePreview}
                 alt="Image preview"
                 className="w-full h-full object-cover"
+                placeholder="blur"
+                blurDataURL="/images/placeholder.png"
               />
               {/* "Change Image" button positioned at the top right */}
               <button

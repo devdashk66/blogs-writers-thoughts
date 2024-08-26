@@ -80,6 +80,8 @@ const BlogCard = ({ blog, user }) => {
           className="w-full h-full object-cover aspect-square rounded-lg group-hover:scale-125 duration-300"
           width={600}
           height={600}
+          placeholder="blur"
+          blurDataURL="/images/placeholder.png"
         />
       </div>
     </li>

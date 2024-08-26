@@ -31,6 +31,8 @@ const ProfileInfo = ({ info, isPublic }) => {
               alt="profile"
               src={info?.profileUrl ?? "/images/default-avater.jpg"}
               className="w-full h-full object-cover"
+              placeholder="blur"
+              blurDataURL="/images/placeholder.png"
             />
           </div>
 

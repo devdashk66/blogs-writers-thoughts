@@ -14,6 +14,8 @@ const BlogCard = ({ blog }) => {
             width={150}
             height={90}
             alt={blog?.title ?? "Blog Image"}
+            placeholder="blur"
+            blurDataURL="/images/placeholder.png"
             className="aspect-square object-cover rounded group-hover:scale-125 duration-300"
           />
         </div>

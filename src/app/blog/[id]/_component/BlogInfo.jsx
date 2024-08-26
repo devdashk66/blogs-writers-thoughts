@@ -33,6 +33,8 @@ const BlogInfo = async ({ blog }) => {
           height={1080}
           alt={blog?.title}
           className="min-h-[300px] max-h-[500px] object-cover"
+          placeholder="blur"
+          blurDataURL={blog?.placeholder ?? "/images/placeholder.png"}
         />
         {/* Delete button for the blog, visible only if the user is the author */}
         {isMe && <DeleteBlog id={blog?.id} isBlogPage={true} />}

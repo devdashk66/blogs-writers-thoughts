@@ -16,6 +16,8 @@ const AboutPage = () => {
               width={1500}
               height={1000}
               alt="About"
+              placeholder="blur"
+              blurDataURL="/images/placeholder.png"
             />
           </div>
         </div>

@@ -40,6 +40,8 @@ const ImageUpload = ({ profileUrl, onUploadComplete }) => {
                 alt="profile"
                 src={profileUrl}
                 className="object-cover h-48 w-48 rounded-full"
+                placeholder="blur"
+                blurDataURL="/images/placeholder.png"
               />
               <label
                 className="absolute top-2 right-2 cursor-pointer"
