@@ -1,6 +1,8 @@
 "use server";
 import { auth, signIn } from "@/auth";
+import EmailTemplate from "@/components/common/EmailTemplate";
 import { revalidatePath } from "next/cache";
+import { Resend } from "resend";
 import connectToDB from "../connectToDB";
 import { blogModel } from "../models/blogModel";
 import { commentModel } from "../models/commentModel";
@@ -164,6 +166,24 @@ export async function deleteComment(id) {
     return "Comment deleted";
   } catch (error) {
     console.log(error.message);
+    throw error;
+  }
+}
+
+export async function sendEmail(user) {
+  const resend = new Resend(process.env.RESEND_API_KEYS);
+
+  try {
+    const sent = await resend.emails.send({
+      from: "NoReply <onboarding@resend.dev>",
+      to: user?.email,
+      subject: user?.subject,
+      react: EmailTemplate({ name: user?.name }),
+    });
+
+    console.log(sent);
+    return "Message sent";
+  } catch (error) {
     throw error;
   }
 }

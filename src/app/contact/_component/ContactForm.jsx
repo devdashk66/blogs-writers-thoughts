@@ -1,9 +1,12 @@
 "use client";
+import EmailTemplate from "@/components/common/EmailTemplate";
 import { useUser } from "@/context/UserContext";
+import { sendEmail } from "@/database/actions";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
 const ContactForm = () => {
+  const [success, setSuccess] = useState(false);
   const { user } = useUser();
   const [formData, setFormData] = useState({
     name: user?.name ?? "",
@@ -38,18 +41,11 @@ const ContactForm = () => {
     }
 
     try {
-      const response = formData;
+      const response = await sendEmail(formData);
 
       if (response) {
         toast.success("Message sent successfully!");
-        console.log(formData);
-        setFormData({
-          name: "",
-          email: "",
-          message: "",
-          subject: "",
-          newsletter: false,
-        });
+        setSuccess(true);
       } else {
         const result = await response.json();
         toast.error(result.error || "Failed to send message");
@@ -310,6 +306,12 @@ const ContactForm = () => {
           </div>
         </div>
       </main>
+
+      {success && (
+        <div className="fixed top-0 left-0 w-full h-screen">
+          <EmailTemplate name={formData.name} success={true} />
+        </div>
+      )}
     </section>
   );
 };
