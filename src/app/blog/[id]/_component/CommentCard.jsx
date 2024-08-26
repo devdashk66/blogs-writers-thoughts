@@ -2,7 +2,7 @@ import { auth } from "@/auth";
 import { getUserByEmail } from "@/database/queries";
 import { formatDate } from "@/utils/formatDate";
 import Link from "next/link";
-import DeleteComment from "./deleteComment";
+import DeleteComment from "./DeleteComment";
 
 const CommentCard = async ({ comment, blogAuthorId }) => {
   const session = await auth(); // Retrieve the current session to check if a user is authenticated
