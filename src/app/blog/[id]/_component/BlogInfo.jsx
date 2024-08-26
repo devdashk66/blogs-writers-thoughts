@@ -6,6 +6,7 @@ import { formatDate } from "@/utils/formatDate";
 import Image from "next/image";
 import Link from "next/link";
 import { FaEdit } from "react-icons/fa";
+import SocialShare from "./SocialShare";
 
 const BlogInfo = async ({ blog }) => {
   // Authenticate the user and get the session
@@ -103,6 +104,7 @@ const BlogInfo = async ({ blog }) => {
             <p className="text-base leading-8 my-5 dark:text-gray-300">
               {blog?.description}
             </p>
+            <SocialShare title={blog?.title} />
           </div>
         </div>
       </div>
