@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const EmailTemplate = ({ name = "Name", success }) => {
+const EmailTemplate = ({ name = "Name", success, user }) => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-zinc-900  dark:bg-gray-100 bg-opacity-30 dark:bg-opacity-30">
       <div className="bg-white dark:bg-dark rounded-lg shadow-md p-8 max-w-md text-center">
@@ -9,8 +9,8 @@ const EmailTemplate = ({ name = "Name", success }) => {
         </h1>
         <p className="text-gray-700 dark:text-gray-300 mb-6">
           {success
-            ? "Thanks for contacting us!. Please check your email for further information."
-            : "Your message has been successfully sent. We will get back to you soon!"}
+            ? "Your message has been successfully sent. We will get back to you soon!"
+            : user?.message}
         </p>
         {success ? (
           <Link

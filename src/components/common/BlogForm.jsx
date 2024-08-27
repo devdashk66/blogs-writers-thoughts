@@ -23,7 +23,7 @@ const BlogForm = ({ blog }) => {
 
   // Function to handle image upload and set image data
   const handleImageUpload = (imageUrl) => {
-    setFormData({ ...formData, image: imageUrl });
+    setFormData((prev) => ({ ...prev, image: imageUrl }));
     setImagePreview(imageUrl);
   };
 
@@ -41,18 +41,21 @@ const BlogForm = ({ blog }) => {
     // Check if an image is uploaded
     if (!formData.image) {
       toast.error("Image is required.");
+      setLoading(false);
       return;
     }
 
     // Check if a title is provided
     if (!formData.title.trim()) {
       toast.error("Title is required.");
+      setLoading(false);
       return;
     }
 
     // Check if a description is provided
     if (!formData.description.trim()) {
       toast.error("Description is required.");
+      setLoading(false);
       return;
     }
 

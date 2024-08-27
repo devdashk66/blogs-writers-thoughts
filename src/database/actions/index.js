@@ -1,6 +1,5 @@
 "use server";
 import { auth, signIn } from "@/auth";
-import EmailTemplate from "@/components/common/EmailTemplate";
 import { revalidatePath } from "next/cache";
 import { Resend } from "resend";
 import connectToDB from "../connectToDB";
@@ -176,12 +175,11 @@ export async function sendEmail(user) {
   try {
     const sent = await resend.emails.send({
       from: "NoReply <onboarding@resend.dev>",
-      to: user?.email,
+      to: "tailoi0097@gmail.com",
       subject: user?.subject,
-      react: EmailTemplate({ name: user?.name }),
+      html: `Hi Dev, You have new message. <br/><br/>Form: <strong>${user?.name}</strong> <br/><br/>E-mail Address: <strong>${user?.email}</strong> <br/><br/>Subject: <strong>${user?.subject}</strong> <br/><br/>Message: <strong>${user?.message}</strong>`,
     });
 
-    console.log(sent);
     return "Message sent";
   } catch (error) {
     throw error;
