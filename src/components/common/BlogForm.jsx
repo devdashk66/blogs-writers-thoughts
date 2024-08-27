@@ -2,11 +2,14 @@
 
 import ImageUpload from "@/app/blog/edit/[id]/_component/ImageUpload";
 import { createBlog, updateBlog } from "@/database/actions";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
 const BlogForm = ({ blog }) => {
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
   // State for managing the image preview and form data
@@ -33,6 +36,7 @@ const BlogForm = ({ blog }) => {
   // Function to handle form submission with validation
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     // Check if an image is uploaded
     if (!formData.image) {
@@ -79,6 +83,8 @@ const BlogForm = ({ blog }) => {
       } catch (error) {
         console.error("Error saving blog:", error);
         toast.error("An error occurred while creating the blog.");
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -134,10 +140,23 @@ const BlogForm = ({ blog }) => {
           {/* Submit button */}
           <div className="flex justify-end">
             <button
+              disabled={loading}
               type="submit"
-              className="px-6 py-2 bg-primary text-white font-semibold rounded-md hover:bg-primary focus:outline-none"
+              className={` py-2  text-white font-semibold rounded-md hover:bg-primary focus:outline-none ${
+                loading ? "border border-primary px-10" : "bg-primary px-6"
+              }`}
             >
-              Submit
+              {loading ? (
+                <Image
+                  src="/images/Spinner.svg"
+                  width={25}
+                  height={25}
+                  alt="Loading"
+                  property=""
+                />
+              ) : (
+                <span className="">Submit</span>
+              )}
             </button>
           </div>
         </form>
