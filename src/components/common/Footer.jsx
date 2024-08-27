@@ -78,7 +78,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="max-w-screen-2xl mx-auto flex py-5  text-gray-800 dark:text-gray-500 text-sm flex-col items-center border-t  bg-white dark:bg-dark">
+      <div className="max-w-screen-2xl mx-auto flex py-5  text-gray-800 dark:text-gray-500 text-sm flex-col items-center border-t  bg-white dark:bg-dark relative">
         <div className="md:flex-auto mt-2 flex-row flex gap-3">
           <a
             href="https://github.com/devdashk66"
@@ -127,6 +127,9 @@ const Footer = () => {
           </a>
           .
         </div>
+        <p className="text-[10px] absolute bottom-1 right-3">
+          Created on 27-08-2024
+        </p>
       </div>
     </footer>
   );

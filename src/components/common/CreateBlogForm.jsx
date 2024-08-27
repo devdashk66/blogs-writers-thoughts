@@ -10,7 +10,7 @@ const CreateBlogForm = () => {
   };
 
   return (
-    <div className="relative mx-5 mb-5 bg-white dark:bg-dark rounded-lg p-2">
+    <div className="relative mx-5 mb-5 bg-white dark:bg-dark rounded-lg p-2 pt-5">
       <div className="absolute px-2 top-0 -left-[0] bg-primary  rounded-tl-lg rounded-br-lg">
         <h2 className="font-semibold text-white">Discussion</h2>
       </div>

@@ -142,7 +142,7 @@ const BlogForm = ({ blog }) => {
             <button
               disabled={loading}
               type="submit"
-              className={` py-2  text-white font-semibold rounded-md hover:bg-primary focus:outline-none ${
+              className={` py-2  text-white font-semibold rounded-md focus:outline-none ${
                 loading ? "border border-primary px-10" : "bg-primary px-6"
               }`}
             >
@@ -155,7 +155,7 @@ const BlogForm = ({ blog }) => {
                   property=""
                 />
               ) : (
-                <span className="">Submit</span>
+                <span>{blog ? "Update" : "Submit"}</span>
               )}
             </button>
           </div>

@@ -2,15 +2,27 @@
 import { useEffect, useState } from "react";
 
 const ToggleDarkMode = () => {
-  const [isClassAdded, setIsClassAdded] = useState(false);
+  // Initialize dark mode state based on localStorage value or default to false
+  const [isClassAdded, setIsClassAdded] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("dark-mode") === "true";
+    }
+    return false;
+  });
 
   const toggleClass = () => {
-    setIsClassAdded(!isClassAdded);
+    // Toggle dark mode state
+    setIsClassAdded((prev) => {
+      const newMode = !prev;
+      // Save the new mode to localStorage
+      localStorage.setItem("dark-mode", newMode);
+      return newMode;
+    });
   };
 
   useEffect(() => {
     const htmlElement = document.querySelector("html");
-
+    // Apply the dark mode class based on the state
     if (isClassAdded) {
       htmlElement.classList.add("dark");
     } else {
@@ -23,6 +35,7 @@ const ToggleDarkMode = () => {
       onClick={toggleClass}
       className="h-12 w-12 rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700"
     >
+      {/* Light Mode Icon */}
       <svg
         className="fill-dark block dark:hidden"
         fill="currentColor"
@@ -30,6 +43,7 @@ const ToggleDarkMode = () => {
       >
         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
       </svg>
+      {/* Dark Mode Icon */}
       <svg
         className="fill-white hidden dark:block"
         fill="currentColor"
