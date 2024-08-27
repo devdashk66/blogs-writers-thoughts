@@ -96,6 +96,7 @@ const RegisterForm = () => {
           )}
           <button
             type="submit"
+            disabled={loading}
             className={`mt-5 tracking-wide font-semibold  text-gray-100 w-full py-4 rounded-lg hover:bg-opacity-80 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none ${
               loading ? "border border-primary" : "bg-primary"
             }`}
