@@ -2,12 +2,15 @@
 import ImageUpload from "@/app/profile/_component/ImageUpload";
 import { useUser } from "@/context/UserContext";
 import { updateUser } from "@/database/actions";
+import Image from "next/image";
 import { useState } from "react";
 import { FaBriefcase, FaMapMarkerAlt } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { toast } from "react-toastify";
 
 const EditProfileModal = ({ info, onClose }) => {
+  const [loading, setLoading] = useState(false);
+
   const { setContextUser } = useUser();
   const [user, setUser] = useState({
     profileUrl: info.profileUrl || "",
@@ -29,6 +32,7 @@ const EditProfileModal = ({ info, onClose }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     try {
       const updatedUser = await updateUser(info.id, user);
       if (updatedUser) {
@@ -39,6 +43,8 @@ const EditProfileModal = ({ info, onClose }) => {
     } catch (error) {
       console.error(error);
       toast.error("Something went wrong");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -99,8 +105,23 @@ const EditProfileModal = ({ info, onClose }) => {
               />
             </p>
             <div className="pt-8 pb-6">
-              <button className="bg-primary text-white font-bold py-2 px-8 rounded-full border border-primary hover:border transform transition-all duration-300">
-                Update
+              <button
+                disabled={loading}
+                className={`text-white font-bold py-2 rounded-full border border-primary hover:border transform transition-all ${
+                  loading ? "border border-primary px-12" : "bg-primary px-8"
+                }`}
+              >
+                {loading ? (
+                  <Image
+                    src="/images/Spinner.svg"
+                    width={25}
+                    height={25}
+                    alt="Loading"
+                    property=""
+                  />
+                ) : (
+                  <span className="">Update</span>
+                )}
               </button>
             </div>
           </div>
