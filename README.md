@@ -1,8 +1,4 @@
-# Create a README.md file with the provided content
-
-readme_content = """
-
-# Writers Thoughts
+# Writers Thoughts by Dev
 
 Welcome to **Writers Thoughts**, a Next.js blog platform where writers can share their thoughts, experiences, and stories.
 
