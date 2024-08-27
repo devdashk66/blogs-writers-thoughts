@@ -15,9 +15,6 @@ export async function generateMetadata({ params, searchParams }, parent) {
   try {
     return {
       title,
-      // openGraph: {
-      //   images: `${process.env.NEXT_PUBLIC_SITE_URL}/api/og?text=${params.id}`,
-      // },
     };
   } catch (error) {
     console.error("Error generating metadata:", error);
