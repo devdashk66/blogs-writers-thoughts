@@ -117,7 +117,7 @@ export const getBlogById = async (id) => {
 export const getBlogsByUserId = async (id) => {
   await connectToDB();
 
-  if (id.length !== 24) {
+  if (id?.length !== 24) {
     return null;
   }
 
