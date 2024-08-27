@@ -9,11 +9,11 @@ Check out the live version of the site here: [Writers Thoughts - Blogs](https://
 ## 📖 Features
 
 - **Dynamic Blog Content**: Create, edit, and manage blog posts with ease.
-- **Dark Mode Support**: Smooth transition between light and dark themes.
 - **Commenting System**: Engage with readers through an integrated commenting feature.
 - **SEO Optimized**: Metadata management for better search engine visibility.
 - **User Authentication**: Secure login and registration functionalities.
 - **Image Upload and Optimization**: Seamlessly upload and optimize images for better performance.
+- **Dark Mode Support**: Smooth transition between light and dark themes.
 - **Middleware for Route Protection**: Prevent unauthorized access to specific routes.
 
 ## 🛠️ Technologies Used
@@ -23,6 +23,10 @@ Check out the live version of the site here: [Writers Thoughts - Blogs](https://
 - **React Toastify**: Notifications for providing feedback to users.
 - **Cloudinary**: Image and video management for uploading and optimization.
 - **NextAuth.js**: Authentication library for managing user sessions.
+- **Bcrypt.js**: A library for hashing passwords, providing secure password storage and management.
+- **Resend**: For handling and managing email delivery and notifications, Resend integrates seamlessly into the project for reliable communication.
+- **React-Share**: This library is used to implement social sharing functionalities, allowing users to easily share content across various social media platforms.
+- **Mongoose**: An ODM (Object Data Modeling) library for MongoDB and Node.js. Mongoose provides a schema-based solution to model application data and simplifies interactions with MongoDB.
 - **Vercel**: Hosting platform for modern web applications.
 
 ## 📦 Getting Started

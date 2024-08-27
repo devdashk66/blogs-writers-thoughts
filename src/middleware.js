@@ -5,7 +5,7 @@ import NextAuth from "next-auth";
 import { NextResponse } from "next/server";
 
 // List of protected routes that require user authentication
-const protectedRoutes = ["/profile", "/dashboard"];
+const protectedRoutes = ["/profile", "/blog/create"];
 
 // List of routes that shouldn't be accessible to authenticated users
 const authRestrictedRoutes = ["/login", "/register"];
@@ -42,5 +42,5 @@ export async function middleware(req) {
 
 // Specify the paths where the middleware should apply
 export const config = {
-  matcher: ["/profile", "/login", "/register"], // Add more routes if needed
+  matcher: ["/profile", "/blog/create", "/login", "/register"], // Add more routes if needed
 };
