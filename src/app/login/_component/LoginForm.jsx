@@ -1,15 +1,18 @@
 "use client";
 import { signIn } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const LoginForm = () => {
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     setError("");
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email");
@@ -29,6 +32,8 @@ const LoginForm = () => {
       }
     } catch (error) {
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -56,11 +61,14 @@ const LoginForm = () => {
         )}
 
         <button
+          disabled={loading}
           type="submit"
-          className="mt-5 tracking-wide font-semibold bg-primary text-gray-100 w-full py-4 rounded-lg hover:bg-opacity-80 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+          className={`mt-5 tracking-wide font-semibold  text-gray-100 w-full py-4 rounded-lg hover:bg-opacity-80 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none ${
+            loading ? "border border-primary" : "bg-primary"
+          }`}
         >
           <svg
-            className="w-6 h-6 -ml-2"
+            className="w-6 h-6 -ml-2 dark:text-white text-gray-800"
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
@@ -70,7 +78,18 @@ const LoginForm = () => {
             <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
             <circle cx="8.5" cy={7} r={4} />
           </svg>
-          <span className="ml-3">Login</span>
+          {loading ? (
+            <Image
+              src="/images/Spinner.svg"
+              width={25}
+              height={25}
+              alt="Loading"
+              className="ml-3"
+              property=""
+            />
+          ) : (
+            <span className="ml-3">Login</span>
+          )}
         </button>
         <p className="mt-6 text-xs text-gray-600 text-center">
           Do not have an account?{" "}

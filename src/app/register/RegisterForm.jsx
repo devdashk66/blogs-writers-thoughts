@@ -1,15 +1,18 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
 const RegisterForm = () => {
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const router = useRouter();
 
   const handleSignUp = async (event) => {
     event.preventDefault();
+    setLoading(true);
     setError("");
 
     const formData = new FormData(event.currentTarget);
@@ -51,6 +54,8 @@ const RegisterForm = () => {
       console.log(error);
       console.error("Error during sign-up:", error);
       setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -91,10 +96,12 @@ const RegisterForm = () => {
           )}
           <button
             type="submit"
-            className="mt-5 tracking-wide font-semibold bg-primary text-gray-100 w-full py-4 rounded-lg hover:bg-opacity-80 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+            className={`mt-5 tracking-wide font-semibold  text-gray-100 w-full py-4 rounded-lg hover:bg-opacity-80 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none ${
+              loading ? "border border-primary" : "bg-primary"
+            }`}
           >
             <svg
-              className="w-6 h-6 -ml-2"
+              className="w-6 h-6 -ml-2 dark:text-white text-gray-800"
               fill="none"
               stroke="currentColor"
               strokeWidth={2}
@@ -105,7 +112,18 @@ const RegisterForm = () => {
               <circle cx="8.5" cy={7} r={4} />
               <path d="M20 8v6M23 11h-6" />
             </svg>
-            <span className="ml-3">Sign Up</span>
+            {loading ? (
+              <Image
+                src="/images/Spinner.svg"
+                width={25}
+                height={25}
+                alt="Loading"
+                className="ml-3"
+                property=""
+              />
+            ) : (
+              <span className="ml-3">Sign Up</span>
+            )}
           </button>
         </div>
       </div>
